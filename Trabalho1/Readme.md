@@ -28,6 +28,15 @@ results = {
 &nbsp; &nbsp; &nbsp; &nbsp; "fashion_mnist": {"time": 32.83, "acc": 91.76},  
 &nbsp; &nbsp; &nbsp; &nbsp; "cifar10": {"time": 60.65, "acc": 0.77},  
 &nbsp; &nbsp; &nbsp; &nbsp; "cifar100": {"time": 51.14, "acc": 0.49},  
-}
+}   
+
+o fit dos modelos pros datasets mnist e fashion_mnist foi feito com batch_size de 2048 e 30 épocas  
+o fit dos modelos pros datasets cifar10 e cifar100 foi feito com batch_size de 32 e 10 épocas  
+
+
+Durante o desenvolvimento das redes, buscou-se aumentar o número de camadas de convolução e de neurônios para otimizar a acurácia durante o treinamento. Se percebíamos um overfit (performance em treinos muito melhor que em testes), buscavamos reduzir o número de camadas ou de neurônios/filtros por camada. Também foram utilizados dropouts para diminuit o overfit. Aumentar o número de camadas de convolução mostrou-se mais benéfico do que aumentar o número de camadas de neurônios: As camadas de convolução pareciam influenciar mais na melhora da acurácia dos casos de teste, enquanto que um aumento do número de neurônios geravam uma melhora na acurácia dos treinamentos que normalmente era acompanhada de um overfit difícil de corrigir.  
+
+Foram realizados testes com batch_size de diferentes tamanhos, mas isso não se deu com o intuito de otimizar a performance da rede, mas sim, como forma de acelerar o processo de treinamento ao permitir que a GPU fosse mais bem utilizada com batch_size maiores.
+
 
 
