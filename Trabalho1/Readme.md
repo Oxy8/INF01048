@@ -1,3 +1,9 @@
+# Integrantes
+
+Eduardo Fonseca da Silva - 00577262 - Turma B  
+Estevan Kuster - - Turma B  
+Pedro de Sene Bavaresco - - Turma B  
+
 # 1. Regressão linear
 
 Com parâmetros b=0, w=0, alpha=0.01, partir de um numero de iteração de 1500, mudanças no EQM são da ordem de 10^-4, e o resultado obtido para até 3 casas decimais foi de 8.527.
