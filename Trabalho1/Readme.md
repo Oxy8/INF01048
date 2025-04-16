@@ -1,8 +1,8 @@
 # Integrantes
 
 Eduardo Fonseca da Silva - 00577262 - Turma B  
-Estevan Kuster - - Turma B  
-Pedro de Sene Bavaresco - - Turma B  
+Estevan Kuster - 00334328 - Turma B  
+Pedro de Sene Bavaresco - 00333563 - Turma B  
 
 # 1. Regressão linear
 
@@ -30,8 +30,8 @@ Ou seja: CIFAR100 >> CIFAR10 >> FASHION_MNIST >> MNIST
 ### 2.
 
 results = {   
-&nbsp; &nbsp; &nbsp; &nbsp; "mnist": {"time": 27.76, "acc": 99.27},  
-&nbsp; &nbsp; &nbsp; &nbsp; "fashion_mnist": {"time": 32.83, "acc": 91.76},  
+&nbsp; &nbsp; &nbsp; &nbsp; "mnist": {"time": 27.76, "acc": 00.9927},  
+&nbsp; &nbsp; &nbsp; &nbsp; "fashion_mnist": {"time": 32.83, "acc": 0.9176},  
 &nbsp; &nbsp; &nbsp; &nbsp; "cifar10": {"time": 60.65, "acc": 0.77},  
 &nbsp; &nbsp; &nbsp; &nbsp; "cifar100": {"time": 51.14, "acc": 0.49},  
 }   
