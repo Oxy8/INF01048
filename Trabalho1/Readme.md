@@ -29,11 +29,12 @@ Ou seja: CIFAR100 >> CIFAR10 >> FASHION_MNIST >> MNIST
 
 ### 2.
 
-results = {   
-&nbsp; &nbsp; &nbsp; &nbsp; "mnist": {"time": 27.76, "acc": 00.9927},  
-&nbsp; &nbsp; &nbsp; &nbsp; "fashion_mnist": {"time": 32.83, "acc": 0.9176},  
-&nbsp; &nbsp; &nbsp; &nbsp; "cifar10": {"time": 60.65, "acc": 0.77},  
-&nbsp; &nbsp; &nbsp; &nbsp; "cifar100": {"time": 51.14, "acc": 0.49},  
+
+results = {  
+&nbsp; &nbsp; &nbsp; &nbsp; "mnist": {"time": 27.76, "acc": 99.27},  
+&nbsp; &nbsp; &nbsp; &nbsp; "fashion_mnist": {"time": 32.83, "acc": 91.76},  
+&nbsp; &nbsp; &nbsp; &nbsp; "cifar10": {"time": 60.65, "acc": 77.63},  
+&nbsp; &nbsp; &nbsp; &nbsp; "cifar100": {"time": 51.14, "acc": 45.91},  
 }   
 
 o fit dos modelos pros datasets mnist e fashion_mnist foi feito com batch_size de 2048 e 30 épocas  
