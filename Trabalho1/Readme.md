@@ -35,7 +35,9 @@ results = {
 &nbsp; &nbsp; &nbsp; &nbsp; "fashion_mnist": {"time": 32.83, "acc": 91.76},  
 &nbsp; &nbsp; &nbsp; &nbsp; "cifar10": {"time": 60.65, "acc": 77.63},  
 &nbsp; &nbsp; &nbsp; &nbsp; "cifar100": {"time": 51.14, "acc": 45.91},  
-}   
+}
+
+**Tempo em segundos e acurácia em porcentagem**  
 
 o fit dos modelos pros datasets mnist e fashion_mnist foi feito com batch_size de 2048 e 30 épocas  
 o fit dos modelos pros datasets cifar10 e cifar100 foi feito com batch_size de 32 e 10 épocas  
