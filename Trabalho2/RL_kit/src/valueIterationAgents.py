@@ -98,7 +98,6 @@ class ValueIterationAgent(ValueEstimationAgent):
         bestAction = actions[0]
         maxQValue = self.computeQValueFromValues(state, bestAction)
 
-
         for action in actions[1:]:
             qValue = self.computeQValueFromValues(state, action)
             if qValue > maxQValue:
