@@ -40,7 +40,7 @@ class ValueIterationAgent(ValueEstimationAgent):
         self.mdp = mdp
         self.discount = discount
         self.iterations = iterations
-        self.values = util.Counter()  # A Counter is a dict with default 0
+        self.values = util.Counter()  # A Counter is a dict with default 0 -> se a chave ainda não existe, então o valor é 0
 
         # Write value iteration code here
         "*** YOUR CODE HERE ***"
