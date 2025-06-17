@@ -27,7 +27,8 @@ Conclusão: O agente minimax não perdeu nenhuma partida, o que sugere desempenh
 Foram realizadas partidas entre três heurísticas distintas:
 - Contagem de peças: avalia o estado pelo número absoluto de discos do jogador.
 - Valor posicional: utiliza uma matriz de pesos para avaliar posições estratégicas (bordas, cantos, etc.).
-- Heurística customizada: combina os fatores de mobilidade, estabilidade e valor posicional.
+- Heurística customizada: combina os fatores de mobilidade, estabilidade e valor posicional, normaliza cada um deles para ficarem com valores no intervalo (-1, 1) - não necessariamente cobrindo o intervalo por completo - e faz uma média ponderada deles.
+Todas as implementações do minimax possuem profundidade máxima = 5.
 
 ### Contagem de peças X Valor posicional:
 
@@ -72,5 +73,6 @@ A heurística customizada venceu todas as partidas disputadas, destacando-se com
 
 
 ## Referência
-A implementação da heurística customizada foi inspirada parcialmente nas ideias descritas neste artigo:
-[Jacky Choi, How to write an Othello AI with Alpha-Beta Search](https://medium.com/@jackychoi26/how-to-write-an-othello-ai-with-alpha-beta-search-58131ffe67eb)
+A implementação da heurística customizada foi inspirada parcialmente nas ideias descritas neste artigo:   
+[Jacky Choi, How to write an Othello AI with Alpha-Beta Search](https://medium.com/@jackychoi26/how-to-write-an-othello-ai-with-alpha-beta-search-58131ffe67eb)    
+Os valores usados - como os valores das posições e o peso de cada fator - foram obtidos por meio de experimentação.
