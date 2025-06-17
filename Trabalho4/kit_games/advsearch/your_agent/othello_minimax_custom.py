@@ -11,15 +11,16 @@ from .minimax import minimax_move
 # do seu agente.
 
 EVAL_TEMPLATE = [
-    [100, -30, 6, 2, 2, 6, -30, 100],
-    [-30, -50, 1, 1, 1, 1, -50, -30],
-    [  6,   1, 1, 1, 1, 1,   1,   6],
-    [  2,   1, 1, 3, 3, 1,   1,   2],
-    [  2,   1, 1, 3, 3, 1,   1,   2],
-    [  6,   1, 1, 1, 1, 1,   1,   6],
-    [-30, -50, 1, 1, 1, 1, -50, -30],
-    [100, -30, 6, 2, 2, 6, -30, 100]
+    [100, -20, 10, 5, 5, 10, -20, 100],
+    [-20, -50, -2, -2, -2, -2, -50, -20],
+    [10, -2, 3, 2, 2, 3, -2, 10],
+    [5, -2, 2, 1, 1, 2, -2, 5],
+    [5, -2, 2, 1, 1, 2, -2, 5],
+    [10, -2, 3, 2, 2, 3, -2, 10],
+    [-20, -50, -2, -2, -2, -2, -50, -20],
+    [100, -20, 10, 5, 5, 10, -20, 100]
 ]
+
 
 def make_move(state) -> Tuple[int, int]:
     """
@@ -33,16 +34,15 @@ def make_move(state) -> Tuple[int, int]:
     # Remova-o e coloque uma chamada para o minimax_move (que vc implementara' no modulo minimax).
     # A chamada a minimax_move deve receber sua funcao evaluate como parametro.
 
-    return minimax_move(state, 4, evaluate_custom)
+    return minimax_move(state, 5, evaluate_custom)
 
 
 
 
 def count_stable_discs(state, player):
     """
-    Conta discos estáveis do jogador.
-    Um disco é considerado estável se estiver conectado a um canto
-    e todos os discos entre ele e o canto forem do mesmo jogador.
+    Conta discos estáveis do jogador, considerando estável se o disco estiver conectado a um canto
+    e todos os discos entre ele e o canto forem do mesmo jogador. Não cobre todos os casos porque só considera linhas retas
     """
     board = state.board.tiles
     size = 8
@@ -76,6 +76,22 @@ def count_stable_discs(state, player):
 
     return total_stable
 
+
+def evaluate_mask(state, player):
+    player_pieces_sum = 0
+    opponent_pieces_sum = 0
+    tiles = state.board.tiles
+
+    for i in range(8):
+        for j in range(8):
+            if tiles[i][j] == player:
+                player_pieces_sum += EVAL_TEMPLATE[i][j]
+            elif tiles[i][j] !=  state.board.EMPTY:
+                opponent_pieces_sum += EVAL_TEMPLATE[i][j]
+  
+    
+
+    return (player_pieces_sum - opponent_pieces_sum) / 100
 
 
 
@@ -111,11 +127,14 @@ def evaluate_custom(state, player:str) -> float:
     stable_opponent = count_stable_discs(state, opponent)
     stability = (stable_player - stable_opponent) / (stable_player + stable_opponent + 1)
 
+# Avaliação da posição
+    positional_weight = evaluate_mask(state, player)
 
 # Combinação ponderada (os pesos podem ser ajustados por teste empírico)
     total_score = (
-        0.6 * mobility +
-        0.4 * stability
+        0.4 * mobility +
+        0.5 * stability +
+        0.1 * positional_weight
     )
 
     return total_score
