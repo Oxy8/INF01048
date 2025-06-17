@@ -73,5 +73,4 @@ A heurística customizada venceu todas as partidas disputadas, destacando-se com
 
 ## Referência
 A implementação da heurística customizada foi inspirada parcialmente nas ideias descritas neste artigo:
-Jacky Choi, How to write an Othello AI with Alpha-Beta Search.
-https://medium.com/@jackychoi26/how-to-write-an-othello-ai-with-alpha-beta-search-58131ffe67eb
+[Jacky Choi, How to write an Othello AI with Alpha-Beta Search](https://medium.com/@jackychoi26/how-to-write-an-othello-ai-with-alpha-beta-search-58131ffe67eb)
