@@ -1,4 +1,5 @@
 import random
+import time
 from typing import Tuple, Callable
 
 
@@ -17,23 +18,31 @@ def minimax_move(state, max_depth:int, eval_func:Callable) -> Tuple[int, int]:
 
     #raise NotImplementedError()
 
+    start_time = time.time()
+    best_move_so_far = None
+    time_limit = 4.5
+
+    def time_exceeded():
+        return time.time() - start_time >= time_limit
+    
     def alphabeta(node, depth, alpha, beta, maximizing_player):
-        if node.is_terminal() or (max_depth != -1 and depth == 0):
+        if node.is_terminal() or (max_depth != -1 and depth == 0) or time_exceeded():
             return eval_func(node, state.player), None
 
         if not node.legal_moves(): # Tabuleiro trancado, passa a vez.
             child_value, _ = alphabeta(child, depth - 1, alpha, beta, (not maximizing_player))
             return child_value, None
 
-        best_move = None
+        best_move = next(iter(node.legal_moves()))
         if maximizing_player:
             value = float('-inf')
             for move in node.legal_moves():
                 child = node.next_state(move)
                 child_value, _ = alphabeta(child, depth - 1, alpha, beta, False)
-                if child_value >= value: # >= para o caso em que todos os movimentos possíveis levam à derrota.
+                if child_value > value:
                     value = child_value
                     best_move = move
+
                 alpha = max(alpha, value)
                 if beta <= alpha:
                     break  
@@ -43,16 +52,28 @@ def minimax_move(state, max_depth:int, eval_func:Callable) -> Tuple[int, int]:
             for move in node.legal_moves():
                 child = node.next_state(move)
                 child_value, _ = alphabeta(child, depth - 1, alpha, beta, True)
-                if child_value <= value:
+                if child_value < value:
                     value = child_value
                     best_move = move
+
                 beta = min(beta, value)
                 if beta <= alpha:
                     break  
+
             return value, best_move
 
-    _, best_move = alphabeta(state, max_depth if max_depth != -1 else float('inf'), alpha=float('-inf'), beta=float('inf'), maximizing_player=True)
 
-    return best_move
+    depth = 1
+    while max_depth == -1 or depth <= max_depth:
+        print("depth: " + str(depth))
 
+        _, move = alphabeta(state, depth, float('-inf'), float('inf'), True)
+        if not time_exceeded() and move is not None:
+            best_move_so_far = move
+        else:
+            break
+
+        depth += 1
+
+    return best_move_so_far
 
