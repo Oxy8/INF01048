@@ -19,8 +19,11 @@ def minimax_move(state, max_depth:int, eval_func:Callable) -> Tuple[int, int]:
 
     def alphabeta(node, depth, alpha, beta, maximizing_player):
         if node.is_terminal() or (max_depth != -1 and depth == 0):
-            # (max_depth != -1 and depth == 0) não deve ocorrer normalmente, pois se max_depth = 1, chamada recursiva tem depth como float(inf) sempre.
             return eval_func(node, state.player), None
+
+        if not node.legal_moves(): # Tabuleiro trancado, passa a vez.
+            child_value, _ = alphabeta(child, depth - 1, alpha, beta, (not maximizing_player))
+            return child_value, None
 
         best_move = None
         if maximizing_player:
@@ -28,7 +31,7 @@ def minimax_move(state, max_depth:int, eval_func:Callable) -> Tuple[int, int]:
             for move in node.legal_moves():
                 child = node.next_state(move)
                 child_value, _ = alphabeta(child, depth - 1, alpha, beta, False)
-                if child_value > value:
+                if child_value >= value: # >= para o caso em que todos os movimentos possíveis levam à derrota.
                     value = child_value
                     best_move = move
                 alpha = max(alpha, value)
@@ -40,7 +43,7 @@ def minimax_move(state, max_depth:int, eval_func:Callable) -> Tuple[int, int]:
             for move in node.legal_moves():
                 child = node.next_state(move)
                 child_value, _ = alphabeta(child, depth - 1, alpha, beta, True)
-                if child_value < value:
+                if child_value <= value:
                     value = child_value
                     best_move = move
                 beta = min(beta, value)

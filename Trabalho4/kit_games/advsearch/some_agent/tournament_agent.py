@@ -98,6 +98,7 @@ def evaluate_mask(state, player):
 
 
 def evaluate_custom(state, player:str) -> float:
+    
     """
     Evaluates an othello state from the point of view of the given player. 
     If the state is terminal, returns its utility. 
@@ -110,11 +111,11 @@ def evaluate_custom(state, player:str) -> float:
         winner = state.winner()
 
         if winner == player:
-            return 1
+            return float('inf')
         if winner is not None:
-            return -1
+            return float('-inf')
         else:
-            return 0
+            return 0.0
 
     opponent = 'W' if player == 'B' else 'B'
 
