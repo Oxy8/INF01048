@@ -71,7 +71,7 @@ def minimax_move(state, max_depth:int, eval_func:Callable) -> Tuple[int, int]:
             if not time_exceeded() and move is not None:
                 best_move_so_far = move
             else:
-                print("reached depth: " + str(depth))
+                # print("reached depth: " + str(depth))
                 break
 
             depth += 1
