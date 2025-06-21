@@ -111,9 +111,9 @@ def evaluate_custom(state, player:str) -> float:
         winner = state.winner()
 
         if winner == player:
-            return float('inf')
+            return 10000
         if winner is not None:
-            return float('-inf')
+            return -10000
         else:
             return 0.0
 
