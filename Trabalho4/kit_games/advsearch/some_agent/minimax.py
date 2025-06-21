@@ -63,17 +63,21 @@ def minimax_move(state, max_depth:int, eval_func:Callable) -> Tuple[int, int]:
             return value, best_move
 
 
-    depth = 1
-    while max_depth == -1 or depth <= max_depth:
-        print("depth: " + str(depth))
+    if state.game_name == 'Othello':
+        depth = 1
+        while max_depth == -1 or depth <= max_depth:
 
-        _, move = alphabeta(state, depth, float('-inf'), float('inf'), True)
-        if not time_exceeded() and move is not None:
-            best_move_so_far = move
-        else:
-            break
+            _, move = alphabeta(state, depth, float('-inf'), float('inf'), True)
+            if not time_exceeded() and move is not None:
+                best_move_so_far = move
+            else:
+                print("reached depth: " + str(depth))
+                break
 
-        depth += 1
+            depth += 1
+        best_move = best_move_so_far
+    else:
+        _, best_move = alphabeta(state, max_depth if max_depth != -1 else float('inf'), alpha=float('-inf'), beta=float('inf'), maximizing_player=True)
 
-    return best_move_so_far
+    return best_move
 

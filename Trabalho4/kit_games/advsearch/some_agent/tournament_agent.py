@@ -36,7 +36,7 @@ def make_move(state) -> Tuple[int, int]:
     # Remova-o e coloque a sua implementacao da poda alpha-beta
 
     if state.game_name == 'Othello':
-        return minimax_move(state, 10, evaluate_custom)
+        return minimax_move(state, 100, evaluate_custom)
 
 
 
